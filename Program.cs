@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Notes_API.Database;
+using Notes_API.Interfaces;
+using Notes_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -8,14 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
     {
         options.UseSqlite("Data source = todos.db");
     });
+    builder.Services.AddScoped<INoteService, NoteService>();
+    builder.Services.AddScoped<IUserService, UserService>();
 }
 
 var app = builder.Build();
 {
     app.UseStaticFiles();
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"
-    );
+    app.MapControllerRoute( "default", "{controller=Note}/{action=List}/{id?}");
     app.Run();   
 }
