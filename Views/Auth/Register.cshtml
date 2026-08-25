@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="text-center mb-4">Регистрация</h2>
+
+                    <form asp-action="Register" asp-controller="Auth" method="post" novalidate>
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Имя</label>
+                            <input type="text" id="Name" name="Name" class="form-control" placeholder="Введите ваше имя" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Пароль</label>
+                            <input type="password" id="Password" name="Password" class="form-control" placeholder="Введите пароль" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ConfirmPassword" class="form-label">Подтвердите пароль</label>
+                            <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" placeholder="Повторите пароль" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
