@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\Notes_API.csproj": {}
+    "C:\\Notes MVC\\Notes_MVC\\Notes_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\Notes_API.csproj": {
+    "C:\\Notes MVC\\Notes_MVC\\Notes_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\Notes_API.csproj",
+        "projectUniqueName": "C:\\Notes MVC\\Notes_MVC\\Notes_API.csproj",
         "projectName": "Notes_API",
-        "projectPath": "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\Notes_API.csproj",
+        "projectPath": "C:\\Notes MVC\\Notes_MVC\\Notes_API.csproj",
         "packagesPath": "C:\\Users\\lp021\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\obj\\",
+        "outputPath": "C:\\Notes MVC\\Notes_MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lp021\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1032,3 +1032,32 @@ body {
     font-size: 0.85rem;
     margin-top: 3px;
 }
+.note-edit-textarea {
+    min-height: 180px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+}
+.auth-container {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: calc(100% - 2rem);
+    max-width: 420px;
+
+    background: rgba(26, 26, 26, 0.8);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    padding: 3rem;
+
+    z-index: 1;
+}

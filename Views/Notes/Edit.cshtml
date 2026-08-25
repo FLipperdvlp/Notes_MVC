@@ -1,4 +1,4 @@
-@model Notes_API.Models.Login.LoginViewModel
+@model Notes_API.Models.Request.EditRequestModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Abstract Notes — Вход</title>
+    <title>Редактировать заметку</title>
 
     <link rel="stylesheet"
           href="~/css/styles.css">
@@ -22,25 +22,25 @@
 
 <div class="bg-elements"></div>
 
-
 <div class="auth-container">
 
     <div class="auth-header">
 
         <h1 class="auth-title">
-            Abstract Notes
+            Редактирование
         </h1>
 
         <p class="auth-subtitle">
-            Войдите, чтобы продолжить
+            Измените содержимое заметки
         </p>
 
     </div>
 
 
     <form
-        asp-controller="Auth"
-        asp-action="Login"
+        asp-controller="Notes"
+        asp-action="Edit"
+        asp-route-id="@ViewBag.NoteId"
         method="post">
 
         @Html.AntiForgeryToken()
@@ -50,18 +50,16 @@
 
             <label
                 class="form-label"
-                asp-for="Email">
+                asp-for="Title">
 
-                Email
+                Название
 
             </label>
 
             <input
-                asp-for="Email"
-                type="email"
+                asp-for="Title"
                 class="form-input"
-                placeholder="example@email.com"
-                autocomplete="email"
+                placeholder="Название заметки..."
                 required>
 
         </div>
@@ -71,19 +69,17 @@
 
             <label
                 class="form-label"
-                asp-for="Password">
+                asp-for="Content">
 
-                Пароль
+                Текст
 
             </label>
 
-            <input
-                asp-for="Password"
-                type="password"
-                class="form-input"
-                placeholder="Введите пароль"
-                autocomplete="current-password"
-                required>
+            <textarea
+                asp-for="Content"
+                class="form-input note-edit-textarea"
+                placeholder="Текст заметки..."
+                required></textarea>
 
         </div>
 
@@ -92,7 +88,7 @@
             type="submit"
             class="btn">
 
-            Войти
+            Сохранить
 
         </button>
 
@@ -101,15 +97,11 @@
 
     <div class="auth-link">
 
-        <span>
-            Нет аккаунта?
-        </span>
-
         <a
-            asp-controller="Auth"
-            asp-action="Register">
+            asp-controller="Notes"
+            asp-action="List">
 
-            Регистрация
+            ← Вернуться к заметкам
 
         </a>
 

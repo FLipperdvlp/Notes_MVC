@@ -29,13 +29,14 @@ namespace Notes_API.Services
             return user;
         }
 
-        public async Task CreateUser(string email, string password)
+        public async Task CreateUser(string name, string email, string password)
         {
             if (await _context.Users.AnyAsync(u => u.Email == email))
                 throw new Exception("User with this email already exists");
 
             var user = new User
             {
+                Name = name,
                 Email = email,
                 PasswordHash = HashPassword(password)
             };
@@ -43,6 +44,7 @@ namespace Notes_API.Services
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
+
         public string GetJwtToken(User user)
         {
             throw new NotImplementedException();

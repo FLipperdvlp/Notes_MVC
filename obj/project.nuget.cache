@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zQ3onOQbcbU=",
+  "dgSpecHash": "sQYww9U4doM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\lp021\\Desktop\\Notes API\\Notes_API\\Notes_API.csproj",
+  "projectFilePath": "C:\\Notes MVC\\Notes_MVC\\Notes_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lp021\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
     "C:\\Users\\lp021\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.11\\microsoft.data.sqlite.core.10.0.11.nupkg.sha512",

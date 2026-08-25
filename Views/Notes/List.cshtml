@@ -17,13 +17,21 @@
 <div class="todo-layout">
 <header class="todo-header">
     <div class="user-info">
+
         <div class="user-avatar">
-            П
+            @(User.Identity?.Name?.FirstOrDefault().ToString().ToUpper() ?? "U")
         </div>
+
         <div>
-            <h2> Пользователь </h2>
-            <p class="user-subtitle"> Мои заметки </p>
+            <h2>
+                @(User.Identity?.Name ?? "Пользователь")
+            </h2>
+
+            <p class="user-subtitle">
+                Мои заметки
+            </p>
         </div>
+
     </div>
 
     <div class="header-actions">

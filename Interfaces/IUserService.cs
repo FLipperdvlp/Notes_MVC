@@ -8,5 +8,5 @@ public interface IUserService
 
     string GetJwtToken(User user);
 
-    Task CreateUser(string email, string password);
+    Task CreateUser(string name, string email, string password);
 }

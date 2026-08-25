@@ -4,6 +4,9 @@ namespace Notes_API.Models.Register;
 
 public class RegisterViewModel
 {
+    [Required]
+    [MinLength(3, ErrorMessage = "minimum length is 3")]
+    public string Name { get; set; } = string.Empty;
     
     [Required]
     [EmailAddress]

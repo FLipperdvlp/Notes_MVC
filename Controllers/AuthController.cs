@@ -7,6 +7,9 @@ using Notes_API.Interfaces;
 using Notes_API.Models;
 using Notes_API.Models.Login;
 using Notes_API.Models.Register;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Notes_API.Controllers;
 
@@ -30,7 +33,7 @@ public class AuthController : Controller
         if (!ModelState.IsValid)
             return View(model);
 
-        await _userService.CreateUser(model.Email, model.Password);
+        await _userService.CreateUser(model.Name, model.Email, model.Password);
 
         return RedirectToAction("Login");
     }
@@ -41,20 +44,61 @@ public class AuthController : Controller
     {
         return View();
     }
+
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
             return View(model);
 
-        var user = await _userService.GetUserByCredentialsAsync(model.Email, model.Password);
+        var user = await _userService.GetUserByCredentialsAsync(
+            model.Email,
+            model.Password
+        );
 
         if (user == null)
         {
-            ModelState.AddModelError("", "Invalid login attempt.");
+            ModelState.AddModelError(
+                "",
+                "Неверный email или пароль."
+            );
+
             return View(model);
         }
 
-        return RedirectToAction("List", "Note");
+        var claims = new List<Claim>
+        {
+            new Claim(
+                ClaimTypes.NameIdentifier,
+                user.Id.ToString()
+            ),
+
+            new Claim(
+                ClaimTypes.Name,
+                user.Name
+            ),
+
+            new Claim(
+                ClaimTypes.Email,
+                user.Email
+            )
+        };
+
+        var identity = new ClaimsIdentity(
+            claims,
+            CookieAuthenticationDefaults.AuthenticationScheme
+        );
+
+        var principal = new ClaimsPrincipal(identity);
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            principal
+        );
+
+        return RedirectToAction(
+            "List",
+            "Notes"
+        );
     }
 }
