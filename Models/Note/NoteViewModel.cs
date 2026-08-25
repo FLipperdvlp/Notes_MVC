@@ -8,6 +8,8 @@ public class NoteViewModel
     public string Title { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public bool IsPinned { get; set; }
     public int UserId { get; set; }
 
     public NoteViewModel(Note note)
@@ -16,6 +18,8 @@ public class NoteViewModel
         Title = note.Title;
         Content = note.Content;
         CreatedAt = note.CreatedAt;
+        UpdatedAt = note.UpdatedAt;
+        IsPinned = note.IsPinned;
         UserId = note.UserId;
     }
 }

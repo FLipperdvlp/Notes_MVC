@@ -66,4 +66,4 @@ C:\Users\lp021\Desktop\Notes API\Notes_API\bin\Debug\net10.0\runtimes\osx-x64\na
 C:\Users\lp021\Desktop\Notes API\Notes_API\bin\Debug\net10.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\lp021\Desktop\Notes API\Notes_API\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\lp021\Desktop\Notes API\Notes_API\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\lp021\Desktop\Notes API\Notes_API\obj\Debug\net10.0\compressed\5mqdu362iv-{0}-9wwuumtimi-9wwuumtimi.gz
+C:\Users\lp021\Desktop\Notes API\Notes_API\obj\Debug\net10.0\compressed\2o39s0yn04-{0}-q1p4nyx6wx-q1p4nyx6wx.gz

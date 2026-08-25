@@ -1,0 +1,1034 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0a0a0a;
+    --secondary: #151515;
+    --accent: #222222;
+    --highlight: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --border: #333333;
+
+    --success: #00ff88;
+    --error: #ff4444;
+    --warning: #ffaa00;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.05),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(255, 255, 255, 0.04),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg-elements {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-elements::before,
+.bg-elements::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-elements::before {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.025) 50%,
+            transparent 60%
+        );
+
+    transform: rotate(15deg) scale(1.5);
+}
+
+.bg-elements::after {
+    background:
+        linear-gradient(
+            -45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.015) 50%,
+            transparent 60%
+        );
+
+    transform: rotate(-15deg) scale(1.5);
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-container {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 3rem;
+
+    background: rgba(26, 26, 26, 0.82);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    position: relative;
+    z-index: 1;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    animation: authAppear 0.5s ease;
+}
+
+.auth-container::before {
+    content: "";
+
+    position: absolute;
+    inset: -1px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.12),
+            transparent 35%,
+            transparent 65%,
+            rgba(255, 255, 255, 0.05)
+        );
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.auth-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.6rem;
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.6rem;
+
+    color: var(--text-secondary);
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.form-input {
+    width: 100%;
+
+    padding: 1rem 1.2rem;
+
+    background: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    color: var(--text-primary);
+
+    font-size: 1rem;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.form-input::placeholder {
+    color: #666;
+}
+
+.form-input:focus {
+    outline: none;
+
+    border-color: #777;
+
+    background: #282828;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.06),
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    width: 100%;
+
+    padding: 1rem 1.5rem;
+
+    background: var(--highlight);
+    color: var(--primary);
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    text-decoration: none;
+    display: block;
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn:hover {
+    background: #e8e8e8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(255, 255, 255, 0.08);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.auth-link {
+    text-align: center;
+
+    margin-top: 2rem;
+
+    color: var(--text-secondary);
+
+    font-size: 0.9rem;
+}
+
+.auth-link a {
+    color: var(--highlight);
+
+    text-decoration: none;
+
+    margin-left: 0.3rem;
+
+    transition: opacity 0.2s ease;
+}
+
+.auth-link a:hover {
+    opacity: 0.65;
+    text-decoration: underline;
+}
+
+/* =========================
+   TODO LAYOUT
+========================= */
+
+.todo-layout {
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 3rem 1.5rem;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.todo-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 2.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.user-avatar {
+    width: 52px;
+    height: 52px;
+
+    background: linear-gradient(
+        135deg,
+        #2d2d2d,
+        #171717
+    );
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.user-info h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.logout-btn {
+    padding: 0.55rem 1rem;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.logout-btn:hover {
+    color: var(--error);
+    border-color: var(--error);
+    background: rgba(255, 68, 68, 0.05);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.todo-container {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+/* =========================
+   ADD NOTE
+========================= */
+
+.add-todo {
+    padding: 1.5rem;
+
+    margin-bottom: 1.5rem;
+
+    background: rgba(26, 26, 26, 0.82);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.add-todo-form {
+    display: grid;
+
+    grid-template-columns: 1.3fr 2fr auto;
+
+    gap: 0.75rem;
+
+    align-items: center;
+}
+
+.add-todo-input,
+.deadline-input {
+    width: 100%;
+
+    padding: 0.95rem 1rem;
+
+    background: var(--accent);
+
+    color: var(--text-primary);
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    font-size: 0.95rem;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.add-todo-input::placeholder,
+.deadline-input::placeholder {
+    color: #666;
+}
+
+.add-todo-input:focus,
+.deadline-input:focus {
+    outline: none;
+
+    border-color: #777;
+
+    background: #282828;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.add-btn {
+    padding: 0.95rem 1.5rem;
+
+    background: var(--highlight);
+    color: var(--primary);
+
+    border: none;
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.add-btn:hover {
+    background: #e7e7e7;
+    transform: translateY(-1px);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.stat-item {
+    padding: 1.3rem;
+
+    background: rgba(26, 26, 26, 0.65);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    border-color: #444;
+}
+
+.stat-number {
+    font-size: 1.9rem;
+    font-weight: 300;
+
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* =========================
+   TODO LIST
+========================= */
+
+.todo-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.9rem;
+}
+
+.todo-item {
+    width: 100%;
+
+    padding: 1.4rem;
+
+    background: rgba(26, 26, 26, 0.82);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto auto;
+
+    align-items: center;
+
+    gap: 1.25rem;
+
+    position: relative;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    animation: noteAppear 0.35s ease;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+
+    border-color: #444;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   NOTE META
+========================= */
+
+.todo-meta {
+    min-width: 0;
+}
+
+.todo-id {
+    color: #666;
+
+    font-size: 0.72rem;
+
+    font-family: monospace;
+
+    margin-bottom: 0.3rem;
+}
+
+.todo-text {
+    color: var(--text-primary);
+
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    margin-bottom: 0.65rem;
+
+    word-break: break-word;
+}
+
+.todo-dates {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+
+    color: #6e6e6e;
+
+    font-size: 0.72rem;
+}
+
+.todo-created,
+.todo-deadline {
+    white-space: nowrap;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.note-content {
+    max-width: 250px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.category-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+
+    padding: 0.4rem 0.75rem;
+
+    background: var(--accent);
+
+    color: var(--text-secondary);
+
+    border-radius: 20px;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.category-personal {
+    background: rgba(0, 255, 136, 0.1);
+
+    color: var(--success);
+
+    border: 1px solid rgba(0, 255, 136, 0.15);
+}
+
+.category-work {
+    background: rgba(255, 170, 0, 0.1);
+
+    color: var(--warning);
+}
+
+.category-urgent {
+    background: rgba(255, 68, 68, 0.1);
+
+    color: var(--error);
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.todo-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    background: #1e1e1e;
+
+    color: var(--text-secondary);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+
+    border-color: #555;
+
+    background: #2b2b2b;
+
+    color: white;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 68, 68, 0.15);
+
+    border-color: var(--error);
+
+    color: var(--error);
+}
+
+/* =========================
+   PINNED
+========================= */
+
+.todo-item.pinned {
+    border-left: 3px solid var(--success);
+}
+
+.overdue {
+    display: inline-block;
+
+    padding: 3px 8px;
+
+    background: rgba(255, 68, 68, 0.15);
+
+    color: var(--error);
+
+    border: 1px solid rgba(255, 68, 68, 0.2);
+
+    border-radius: 5px;
+
+    font-size: 0.75rem;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 5rem 2rem;
+
+    color: var(--text-secondary);
+
+    background: rgba(26, 26, 26, 0.5);
+
+    border: 1px dashed var(--border);
+
+    border-radius: 18px;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+
+    margin-bottom: 1rem;
+
+    opacity: 0.3;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes authAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .todo-item {
+        grid-template-columns: 1fr auto;
+    }
+
+    .note-content {
+        max-width: none;
+
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .category-badge {
+        grid-column: 1;
+        grid-row: 3;
+
+        justify-self: start;
+    }
+
+    .todo-actions {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 0;
+    }
+
+    .todo-layout {
+        padding: 2rem 1rem;
+    }
+
+    .auth-container {
+        margin: 1rem;
+
+        padding: 2rem 1.5rem;
+    }
+
+    .add-todo-form {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .todo-header {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .auth-title {
+        font-size: 1.8rem;
+    }
+
+    .stats {
+        gap: 0.5rem;
+    }
+
+    .stat-item {
+        padding: 1rem 0.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.4rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .todo-item {
+        padding: 1.1rem;
+
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .note-content {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .category-badge {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .todo-actions {
+        grid-column: auto;
+        grid-row: auto;
+
+        justify-content: flex-end;
+    }
+
+    .todo-dates {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .user-avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    .user-info h2 {
+        font-size: 1rem;
+    }
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.logged-user {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.header-btn {
+    padding: 0.6rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.header-btn:hover {
+    color: white;
+    border-color: #555;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.header-btn.primary {
+    background: white;
+    color: #0a0a0a;
+    border-color: white;
+}
+
+.header-btn.primary:hover {
+    background: #e8e8e8;
+}
+
+.logout-btn {
+    padding: 0.6rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+    color: var(--error);
+    border-color: var(--error);
+    background: rgba(255, 68, 68, 0.05);
+}
+
+.user-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-top: 3px;
+}

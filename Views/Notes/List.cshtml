@@ -1,0 +1,215 @@
+@using Notes_API.Models
+@model IEnumerable<Notes_API.Models.NoteViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Мои заметки</title>
+    <link rel="stylesheet"
+          href="~/css/styles.css" />
+</head>
+<body>
+<div class="bg-elements"></div>
+<div class="todo-layout">
+<header class="todo-header">
+    <div class="user-info">
+        <div class="user-avatar">
+            П
+        </div>
+        <div>
+            <h2> Пользователь </h2>
+            <p class="user-subtitle"> Мои заметки </p>
+        </div>
+    </div>
+
+    <div class="header-actions">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <span class="logged-user">
+                👤 @User.Identity.Name
+            </span>
+            <form
+                asp-controller="Auth"
+                asp-action="Logout"
+                method="post">
+                @Html.AntiForgeryToken()
+                <button
+                    type="submit"
+                    class="logout-btn">
+
+                    Выйти
+
+                </button>
+
+            </form>
+        }
+        else
+        {
+            <a
+                asp-controller="Auth"
+                asp-action="Login"
+                class="header-btn">
+                Войти
+            </a>
+            <a
+                asp-controller="Auth"
+                asp-action="Register"
+                class="header-btn primary">
+                Регистрация
+            </a>
+        }
+    </div>
+</header>
+
+    <main class="todo-container">
+
+        <section class="add-todo">
+            <form
+                class="add-todo-form"
+                asp-controller="Notes"
+                asp-action="Create"
+                method="post">
+                @Html.AntiForgeryToken()
+                <input
+                    name="Title"
+                    type="text"
+                    class="add-todo-input"
+                    placeholder="Название заметки..."
+                    autocomplete="off"
+                    required />
+                <input
+                    name="Content"
+                    type="text"
+                    class="deadline-input"
+                    placeholder="Текст заметки..."
+                    autocomplete="off"
+                    required />
+                <button
+                    type="submit"
+                    class="add-btn">
+                    Добавить
+                </button>
+            </form>
+        </section>
+
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-number">
+                    @Model.Count()
+                </div>
+                <div class="stat-label"> Всего </div>
+            </div>
+
+
+            <div class="stat-item">
+                <div class="stat-number">
+                    @Model.Count(n => !n.IsPinned)
+                </div>
+                <div class="stat-label">
+                    Обычных
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-number">
+                    @Model.Count(n => n.IsPinned)
+                </div>
+                <div class="stat-label"> Закреплено </div>
+            </div>
+        </section>
+
+        <section class="todo-list">
+            @if (!Model.Any())
+            {
+                <div class="empty-state">
+                    <div class="empty-state-icon"> 📝 </div>
+                    <h3> Пока нет заметок </h3>
+                    <p style="margin-top: 0.5rem;"> Создай первую заметку выше</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var note in Model)
+                {
+                    <article class="todo-item @(note.IsPinned ? "pinned" : "")">
+                        <div class="todo-meta">
+
+                            <div class="todo-id">
+                                #@note.Id
+                            </div>
+                            <div class="todo-text">
+                                @note.Title
+                            </div>
+                            <div class="todo-dates">
+                                <span class="todo-created">
+                                    Создано:
+                                    @note.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                                </span>
+                                @if (note.UpdatedAt.HasValue){
+                                    <span class="todo-deadline">
+                                        Изменено:
+                                        @note.UpdatedAt.Value.ToString("dd.MM.yyyy HH:mm")
+                                    </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="note-content">
+                            @note.Content
+                        </div>
+
+                        @if (note.IsPinned)
+                        {
+                            <div class="category-badge category-personal">
+                                📌 Закреплено
+                            </div>
+                        } else {
+                            <div class="category-badge">
+                                Заметка
+                            </div>
+                        }
+
+                        <div class="todo-actions">
+
+                            <a
+                                asp-controller="Notes"
+                                asp-action="Edit"
+                                asp-route-id="@note.Id"
+                                class="action-btn"
+                                title="Редактировать">
+
+                                ✏️
+
+                            </a>
+
+                            <form
+                                asp-controller="Notes"
+                                asp-action="Delete"
+                                asp-route-id="@note.Id"
+                                method="post">
+
+                                @Html.AntiForgeryToken()
+
+                                <button
+                                    type="submit"
+                                    class="action-btn delete-btn"
+                                    title="Удалить"
+                                    onclick="return confirm('Удалить эту заметку?');">
+
+                                    ❌
+
+                                </button>
+                            </form>
+                        </div>
+                    </article>
+                }
+            }
+        </section>
+    </main>
+</div>
+</body>
+</html>

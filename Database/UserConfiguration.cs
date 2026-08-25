@@ -18,6 +18,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             new User
             {
                 Id = 1,
+                Name = "Test User",
                 Email = "testuser@example.com",
                 PasswordHash = "password123"
             }

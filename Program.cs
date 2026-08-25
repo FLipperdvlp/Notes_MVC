@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddDbContext<AppDbContext>(options =>
     {
-        options.UseSqlite("Data source = todos.db");
+        options.UseSqlite("Data source = notes.db");
     });
     builder.Services.AddScoped<INoteService, NoteService>();
     builder.Services.AddScoped<IUserService, UserService>();
@@ -18,6 +18,6 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 {
     app.UseStaticFiles();
-    app.MapControllerRoute( "default", "{controller=Note}/{action=List}/{id?}");
+    app.MapControllerRoute( "default", "{controller=Notes}/{action=List}/{id?}");
     app.Run();   
 }

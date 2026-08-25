@@ -1,41 +1,122 @@
-@model IEnumerable<Notes_API.Models.Login.LoginViewModel>
-
+@model Notes_API.Models.Login.LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abstract TODO - Авторизация</title>
-    <link rel="stylesheet" href="~/css/styles.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Abstract Notes — Вход</title>
+
+    <link rel="stylesheet"
+          href="~/css/styles.css">
+
 </head>
+
 <body>
+
 <div class="bg-elements"></div>
 
+
 <div class="auth-container">
+
     <div class="auth-header">
-        <h1 class="auth-title">Abstract TODO</h1>
-        <p class="auth-subtitle">Минималистичное управление задачами</p>
+
+        <h1 class="auth-title">
+            Abstract Notes
+        </h1>
+
+        <p class="auth-subtitle">
+            Войдите, чтобы продолжить
+        </p>
+
     </div>
-        
-    <form>
+
+
+    <form
+        asp-controller="Login"
+        asp-action="Login"
+        method="post">
+
+        @Html.AntiForgeryToken()
+
+
         <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" class="form-input" id="email" required>
+
+            <label
+                class="form-label"
+                asp-for="Email">
+
+                Email
+
+            </label>
+
+            <input
+                asp-for="Email"
+                type="email"
+                class="form-input"
+                placeholder="example@email.com"
+                autocomplete="email"
+                required>
+
         </div>
-            
+
+
         <div class="form-group">
-            <label class="form-label" for="password">Пароль</label>
-            <input type="password" class="form-input" id="password" required>
+
+            <label
+                class="form-label"
+                asp-for="Password">
+
+                Пароль
+
+            </label>
+
+            <input
+                asp-for="Password"
+                type="password"
+                class="form-input"
+                placeholder="Введите пароль"
+                autocomplete="current-password"
+                required>
+
         </div>
-            
-        <a href="todos.html" class="btn">Войти</a>
+
+
+        <button
+            type="submit"
+            class="btn">
+
+            Войти
+
+        </button>
+
     </form>
-        
+
+
     <div class="auth-link">
-        <span>Нет аккаунта?</span>
-        <a href="register.html">Регистрация</a>
+
+        <span>
+            Нет аккаунта?
+        </span>
+
+        <a
+            asp-controller="Auth"
+            asp-action="Register">
+
+            Регистрация
+
+        </a>
+
     </div>
+
 </div>
+
 </body>
+
 </html>

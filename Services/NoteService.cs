@@ -48,5 +48,20 @@ namespace Notes_API.Services
             await dbContext.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Note> EditNote( int noteId, int userId, string title, string content)
+        {
+            var note = await dbContext.Notes
+                .FirstOrDefaultAsync( n => n.Id == noteId && n.UserId == userId );
+
+            if (note is null)
+                return null!;
+
+            note.Title = title;
+            note.Content = content;
+            await dbContext.SaveChangesAsync();
+            
+            return note;
+        }
     }
 }
